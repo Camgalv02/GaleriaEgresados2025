@@ -105,16 +105,22 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.8;
+            opacity: 0;
             transition: opacity 0.5s ease, filter 0.5s ease, object-fit 0.5s ease;
             background: #000;
         }
 
-        .gallery-item:hover {
+        .gallery-item img.loaded {
+            opacity: 0.8;
+        }
+
+        .gallery-item:hover,
+        .gallery-item.active {
             flex: 5;
         }
 
-        .gallery-item:hover img {
+        .gallery-item:hover img,
+        .gallery-item.active img {
             opacity: 1;
             filter: contrast(120%);
             object-fit: contain;
@@ -134,7 +140,8 @@
             pointer-events: none;
         }
 
-        .gallery-item:hover .separator {
+        .gallery-item:hover .separator,
+        .gallery-item.active .separator {
             opacity: 0;
         }
 
@@ -149,6 +156,13 @@
             transform: rotate(180deg);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
             text-align: center;
+        }
+
+        .error-message {
+            color: #d4af37;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 10px;
         }
 
         @media (max-width: 768px) {
@@ -194,55 +208,55 @@
     
     <section>
         <div class="gallery-item">
-            <img src="./img/image0.jpeg" alt="Técnicos en Electrónica">
+            <img data-src=".img/image0.jpeg" alt="Técnicos en Electrónica">
             <div class="separator">
                 <h2>Técnicos en Electrónica</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image1.jpeg" alt="Técnicos en Informática">
+            <img data-src=".img/image1.jpeg" alt="Técnicos en Informática">
             <div class="separator">
                 <h2>Técnicos en Informática Profesional y Personal</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image2.jpeg" alt="Técnicos en Mecánica">
+            <img data-src=".img/image2.jpeg" alt="Técnicos en Mecánica">
             <div class="separator">
                 <h2>Técnicos en Mecánica</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image3.jpeg" alt="Técnicos en Electromecánica">
+            <img data-src="img/image3.jpeg" alt="Técnicos en Electromecánica">
             <div class="separator">
                 <h2>Técnicos en Equipos e Instalaciones Electromecánica</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image4.jpeg" alt="Maestros Mayores de Obra">
+            <img data-src=".img/image4.jpeg" alt="Maestros Mayores de Obra">
             <div class="separator">
                 <h2>Maestros Mayores de Obra</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image5.jpeg" alt="Confección">
+            <img data-src=".img/image5.jpeg" alt="Confección">
             <div class="separator">
                 <h2>FP: Confección de Indumentaria</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image6.jpeg" alt="Electricidad">
+            <img data-src=".img/image6.jpeg" alt="Electricidad">
             <div class="separator">
                 <h2>FP: Electricista Domiciliario</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image7.jpeg" alt="Soldadura">
+            <img data-src=".img/image7.jpeg" alt="Soldadura">
             <div class="separator">
                 <h2>FP: Soldador Profesional</h2>
             </div>
         </div>
         <div class="gallery-item">
-            <img src="./img/image8.jpeg" alt="Carpintería">
+            <img data-src=".img/image8.jpeg" alt="Carpintería">
             <div class="separator">
                 <h2>FP: Carpintero de Banco</h2>
             </div>
@@ -250,12 +264,58 @@
     </section>
 
     <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loadingScreen').classList.add('hidden');
-            }, 2000);
+        // Cargar imágenes
+        let imagesLoaded = 0;
+        const totalImages = document.querySelectorAll('img[data-src]').length;
+        
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            const actualSrc = img.getAttribute('data-src');
+            
+            // Crear nueva imagen para precargar
+            const tempImg = new Image();
+            
+            tempImg.onload = function() {
+                img.src = actualSrc;
+                img.classList.add('loaded');
+                imagesLoaded++;
+                
+                // Ocultar loader cuando todas las imágenes carguen o después de 3 segundos
+                if (imagesLoaded === totalImages) {
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').classList.add('hidden');
+                    }, 500);
+                }
+            };
+            
+            tempImg.onerror = function() {
+                console.error('Error cargando imagen:', actualSrc);
+                imagesLoaded++;
+                
+                // Añadir mensaje de error visible
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = 'Imagen no disponible';
+                img.parentElement.appendChild(errorDiv);
+            };
+            
+            tempImg.src = actualSrc;
         });
+
+        // Timeout de seguridad: ocultar loader después de 3 segundos máximo
+        setTimeout(() => {
+            document.getElementById('loadingScreen').classList.add('hidden');
+        }, 3000);
+
+        // Optimizar interacciones en móvil
+        if ('ontouchstart' in window) {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('touchstart', function(e) {
+                    galleryItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                }, { passive: true });
+            });
+        }
     </script>
 </body>
 </html>
-
