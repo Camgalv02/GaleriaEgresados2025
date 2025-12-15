@@ -158,6 +158,38 @@
             text-align: center;
         }
 
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .caption,
+        .gallery-item.active .caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item .caption h3 {
+            color: #d4af37;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
         .error-message {
             color: #d4af37;
             font-size: 0.8rem;
@@ -212,11 +244,17 @@
             <div class="separator">
                 <h2>Técnicos en Electrónica</h2>
             </div>
+            <div class="caption">
+                <h3>Técnicos en Electrónica</h3>
+            </div>
         </div>
         <div class="gallery-item">
             <img data-src="img/image1.jpeg" alt="Técnicos en Informática">
             <div class="separator">
                 <h2>Técnicos en Informática Profesional y Personal</h2>
+            </div>
+            <div class="caption">
+                <h3>Técnicos en Informática Profesional y Personal</h3>
             </div>
         </div>
         <div class="gallery-item">
@@ -224,11 +262,17 @@
             <div class="separator">
                 <h2>Técnicos en Mecánica</h2>
             </div>
+            <div class="caption">
+                <h3>Técnicos en Mecánica</h3>
+            </div>
         </div>
         <div class="gallery-item">
             <img data-src="img/image3.jpeg" alt="Técnicos en Electromecánica">
             <div class="separator">
                 <h2>Técnicos en Equipos e Instalaciones Electromecánica</h2>
+            </div>
+            <div class="caption">
+                <h3>Técnicos en Equipos e Instalaciones Electromecánica</h3>
             </div>
         </div>
         <div class="gallery-item">
@@ -236,11 +280,17 @@
             <div class="separator">
                 <h2>Maestros Mayores de Obra</h2>
             </div>
+            <div class="caption">
+                <h3>Maestros Mayores de Obra</h3>
+            </div>
         </div>
         <div class="gallery-item">
             <img data-src="img/image5.jpeg" alt="Confección">
             <div class="separator">
                 <h2>FP: Confección de Indumentaria</h2>
+            </div>
+            <div class="caption">
+                <h3>FP: Confección de Indumentaria</h3>
             </div>
         </div>
         <div class="gallery-item">
@@ -248,17 +298,26 @@
             <div class="separator">
                 <h2>FP: Electricista Domiciliario</h2>
             </div>
+            <div class="caption">
+                <h3>FP: Electricista Domiciliario</h3>
+            </div>
         </div>
         <div class="gallery-item">
             <img data-src="img/image7.jpeg" alt="Soldadura">
             <div class="separator">
                 <h2>FP: Soldador Profesional</h2>
             </div>
+            <div class="caption">
+                <h3>FP: Soldador Profesional</h3>
+            </div>
         </div>
         <div class="gallery-item">
             <img data-src="img/image8.jpeg" alt="Carpintería">
             <div class="separator">
                 <h2>FP: Carpintero de Banco</h2>
+            </div>
+            <div class="caption">
+                <h3>FP: Carpintero de Banco</h3>
             </div>
         </div>
     </section>
