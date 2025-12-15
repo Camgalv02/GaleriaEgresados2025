@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+<!--
+    ╔═══════════════════════════════════════════════════════════╗
+    ║  Desarrollado por: Camila Galvez                          ║
+    ║  Fecha: Diciembre 2025                                    ║
+    ║  Proyecto: Galería Egresados 2025                         ║
+    ║  Escuela Técnica Dr. Juan Ramón Vidal                     ║
+    ╚═══════════════════════════════════════════════════════════╝
+-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería Interactiva</title>
+    <meta name="author" content="Camila Galvez">
+    <meta name="designer" content="Camila Galvez">
+    <meta name="developer" content="Camila Galvez">
+    <link rel="icon" type="image/jpeg" href="img/logo.jpeg">
+    <title>Egresados 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cinzel:wght@600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -239,7 +251,15 @@
     </div>
     
     <section>
-       
+        <div class="gallery-item">
+            <img data-src="img/image0.jpeg" alt="Técnicos en Electrónica">
+            <div class="separator">
+                <h2>Técnicos en Electrónica</h2>
+            </div>
+            <div class="caption">
+                <h3>Técnicos en Electrónica</h3>
+            </div>
+        </div>
         <div class="gallery-item">
             <img data-src="img/image1.jpeg" alt="Técnicos en Informática">
             <div class="separator">
@@ -249,13 +269,13 @@
                 <h3>Técnicos en Informática Profesional y Personal</h3>
             </div>
         </div>
-         <div class="gallery-item">
-            <img data-src="img/image0.jpeg" alt="Técnicos en Electrónica">
+        <div class="gallery-item">
+            <img data-src="img/image2.jpeg" alt="Técnicos en Mecánica">
             <div class="separator">
-                <h2>Técnicos en Electrónica</h2>
+                <h2>Técnicos en Mecánica</h2>
             </div>
             <div class="caption">
-                <h3>Técnicos en Electrónica</h3>
+                <h3>Técnicos en Mecánica</h3>
             </div>
         </div>
         <div class="gallery-item">
@@ -274,15 +294,6 @@
             </div>
             <div class="caption">
                 <h3>Maestros Mayores de Obra</h3>
-            </div>
-        </div>
-        <div class="gallery-item">
-            <img data-src="img/image2.jpeg" alt="Técnicos en Mecánica">
-            <div class="separator">
-                <h2>Técnicos en Mecánica</h2>
-            </div>
-            <div class="caption">
-                <h3>Técnicos en Mecánica</h3>
             </div>
         </div>
         <div class="gallery-item">
@@ -324,6 +335,11 @@
     </section>
 
     <script>
+        // ═══════════════════════════════════════════════════════════
+        // Desarrollado por: Camila Galvez
+        // Linkedin: www.linkedin.com/in/camila-galvez-
+        // ═══════════════════════════════════════════════════════════
+        
         // Cargar imágenes
         let imagesLoaded = 0;
         const totalImages = document.querySelectorAll('img[data-src]').length;
@@ -388,6 +404,12 @@
                 }, { passive: true });
             });
         }
+
+        // Firma digital invisible
+        console.log('%c🎓 Galería Egresados 2025', 'font-size: 20px; font-weight: bold; color: #d4af37;');
+        console.log('%cDesarrollado por: Camila Galvez', 'font-size: 14px; color: #d4af37;');
+        console.log('%cEscuela Técnica Dr. Juan Ramón Vidal', 'font-size: 12px; color: #fff;');
+        console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #d4af37;');
     </script>
 </body>
 </html>
