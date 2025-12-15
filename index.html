@@ -311,8 +311,20 @@
             const galleryItems = document.querySelectorAll('.gallery-item');
             galleryItems.forEach(item => {
                 item.addEventListener('touchstart', function(e) {
-                    galleryItems.forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
+                    // Si ya está activo, desactivar (toggle)
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                    } else {
+                        // Remover active de todos los demás
+                        galleryItems.forEach(i => i.classList.remove('active'));
+                        // Activar el actual
+                        this.classList.add('active');
+                        
+                        // Hacer scroll suave hacia el elemento activado
+                        setTimeout(() => {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                    }
                 }, { passive: true });
             });
         }
